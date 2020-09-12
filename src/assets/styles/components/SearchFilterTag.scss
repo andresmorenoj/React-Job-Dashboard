@@ -1,0 +1,29 @@
+@import "../Vars.scss";
+
+.filter__tag {
+  background-color: $color1;
+  width: fit-content;
+  display: flex;
+  border-radius: 3px;
+
+  p {
+    margin: 0;
+    padding: 10px 10px;
+    font-size: 0.8em;
+    color: $primaryColor;
+    font-weight: 700;
+  }
+
+  span {
+    font-size: 1.5em;
+    background-color: $primaryColor;
+    color: #fff;
+    padding: 2px 8px;
+    border-top-right-radius: 3px;
+    cursor: pointer;
+  }
+
+  span:hover {
+    background-color: $color4;
+  }
+}

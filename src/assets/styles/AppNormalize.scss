@@ -8,6 +8,8 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
+@import "./Vars.scss";
+
 * {
   box-sizing: border-box;
 }
@@ -26,6 +28,7 @@ html {
 
 body {
   margin: 0;
+  background-color: $color2;
 }
 
 /**

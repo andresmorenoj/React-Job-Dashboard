@@ -1,0 +1,62 @@
+@import "../Vars.scss";
+
+.header__navbar {
+  max-width: 80%;
+  margin: 0 auto;
+  background-color: #fff;
+  font-family: $mainFontFamily;
+  height: 60px;
+  position: relative;
+  top: -35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 25px 44px -20px $primaryColor;
+  -moz-box-shadow: 0px 25px 44px -20px $primaryColor;
+  box-shadow: 0px 25px 44px -20px $primaryColor;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+  }
+
+  li {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.navbar__tagFilter {
+  display: flex;
+  justify-content: space-between;
+
+  li {
+    margin-right: 15px;
+  }
+}
+
+.header__navbar-input {
+  border-radius: 10px;
+  border-style: none;
+  outline: none;
+  display: block;
+  width: 90%;
+  height: 50px;
+}
+
+.header__navbar-clearButton {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  color: $primaryColor;
+  font-weight: 700;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
