@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./Header";
-import SearchFilter from "./SearchFilter";
 
 const Layout = (props) => {
   const { children } = props;
@@ -8,7 +7,6 @@ const Layout = (props) => {
   return (
     <React.Fragment>
       <Header />
-     {/*  <SearchFilter /> */}
       {children}
     </React.Fragment>
   );
