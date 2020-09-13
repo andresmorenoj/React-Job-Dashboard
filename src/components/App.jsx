@@ -5,20 +5,21 @@ import JobCard from "./JobCard";
 import dataInfo from "../data.json";
 
 function App() {
-  const [data, setData] = useState([]);
+  /* const [data, setData] = useState([]);
 
   function handleClick() {
     setData(dataInfo);
-  }
+  } */
   return (
     <React.Fragment>
       <Layout>
-        <JobCardContainer>
+        {/* <JobCardContainer>
           {data.map((job) => {
             return <JobCard {...job} key={job.id} />;
           })}
           <button onClick={handleClick}>Click</button>
-        </JobCardContainer>
+        </JobCardContainer> */}
+        <JobCardContainer/>
       </Layout>
     </React.Fragment>
   );

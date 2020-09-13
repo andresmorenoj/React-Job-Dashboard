@@ -8,7 +8,7 @@ const Layout = (props) => {
   return (
     <React.Fragment>
       <Header />
-      <SearchFilter />
+     {/*  <SearchFilter /> */}
       {children}
     </React.Fragment>
   );
