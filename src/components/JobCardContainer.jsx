@@ -37,10 +37,9 @@ class JobCardContainer extends React.Component {
  handleFilter = e => {
     if(e.keyCode === 13) {
       const text = e.target.value
-      const newSearch = dataInfo.filter(value => (value.role === e.target.value && value.level === e.target.value) || (value.role === e.target.value || value.level === e.target.value))
-      /* const newSeatch2 = [
-        ...newSearch, dataInfo.filter(value =>value.level === e.target.value)
-      ]  */
+      const newSearch = dataInfo.filter(value => (value.role === e.target.value && value.level === e.target.value) ||
+      (value.role === e.target.value || value.level === e.target.value))
+
       this.setState({
         data: newSearch,
         test: [...this.state.test, text], 
@@ -50,17 +49,17 @@ class JobCardContainer extends React.Component {
     }
   }
 
-  handleClick = () => {
+  handleClear = () => {
     this.setState({
       data: dataInfo,
-      test: 'Hola'
+      test: []
     });
   }
 
   render() {
     return (
       <main className="container">
-        <Filter onChange={this.handleFilter}/>
+        <Filter onChange={this.handleFilter} onClick={this.handleClear} />
         {this.state.data.map((job) => {
               return <JobCard {...job} key={job.id} />;
             })}

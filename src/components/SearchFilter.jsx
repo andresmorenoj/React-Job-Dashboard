@@ -30,11 +30,7 @@ import "../assets/styles/components/Navbar.scss";
     }
   }
 
-  handleClear() {
-    this.setState({
-      tag: [],
-    });
-  }
+  
 
   render() {
     return (
@@ -63,17 +59,39 @@ import "../assets/styles/components/Navbar.scss";
   }
 } */
 
-class SearchFilterTest extends React.Component {
+class SearchFilter extends React.Component {
   constructor(props) {
     super(props);
     this.inputText = React.createRef();
     this.handleKeyUp = this.handleClearInput.bind(this);
+    this.state = {
+      tag: []
+    }
   }
 
   handleClearInput = e => {
     if(e.keyCode === 13) {
+      const newTag = (
+        <li key={this.inputText.current.value}>
+          <div className="filter__tag">
+            <p>{this.inputText.current.value}</p>
+            <span>x</span>
+          </div>
+        </li>
+      );
+      this.setState({
+        tag: [...this.state.tag, newTag],
+      });
       this.inputText.current.value = ""
     }
+  }
+
+  handleClearFilter = () => {
+    this.setState({
+      tag: [],
+    });
+
+    console.log('hola');
   }
 
   render(){
@@ -81,7 +99,7 @@ class SearchFilterTest extends React.Component {
       <nav className="header__navbar">
         <ul>
           <div className="navbar__tagFilter">
-            {/* {this.state.tag} */}
+            {this.state.tag}
   
             <li>
               {/* <input
@@ -103,7 +121,7 @@ class SearchFilterTest extends React.Component {
               /> 
             </li>
           </div>
-          <li /* onClick={this.handleClear} */ className="header__navbar-clearButton">
+          <li onClick={this.props.onClick} onClickCapture={this.handleClearFilter} className="header__navbar-clearButton">
             Clear
           </li>
         </ul>
@@ -113,4 +131,4 @@ class SearchFilterTest extends React.Component {
   
 }
 
-export default SearchFilterTest;
+export default SearchFilter;
