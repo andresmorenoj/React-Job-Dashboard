@@ -31,15 +31,16 @@ class JobCardContainer extends React.Component {
 
  state = {
    data: [],
-   test: ''
+   test: []
  }
 
   handleTest = e => {
-    this.setState({
-      test: e.target.value
-    })
-
-    console.log(this.state.test);
+    if(e.keyCode === 13) {
+      const text = e.target.value
+      this.setState({
+        test: [...this.state.test, text], 
+      })
+    }
   }
 
   handleClick = () => {

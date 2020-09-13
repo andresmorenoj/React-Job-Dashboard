@@ -64,6 +64,17 @@ import "../assets/styles/components/Navbar.scss";
 } */
 
 class SearchFilterTest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.inputText = React.createRef();
+    this.handleKeyUp = this.handleClearInput.bind(this);
+  }
+
+  handleClearInput = e => {
+    if(e.keyCode === 13) {
+      this.inputText.current.value = ""
+    }
+  }
 
   render(){
     return (
@@ -84,9 +95,11 @@ class SearchFilterTest extends React.Component {
   
               <input
                 className="header__navbar-input"
-                onChange={this.props.onChange} 
+                onKeyDown={this.props.onChange} 
                 type="text"
+                ref={this.inputText}
                 placeholder="Text here..."
+                onKeyUp={this.handleClearInput}
               /> 
             </li>
           </div>
