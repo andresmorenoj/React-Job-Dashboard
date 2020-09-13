@@ -21,6 +21,7 @@
   "homepage": "https://github.com/andresmorenoj/React-Social-Dashboard#readme",
   "dependencies": {
     "babel-eslint": "^10.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "eslint": "^7.6.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",

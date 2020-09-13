@@ -2,7 +2,7 @@ import React from "react";
 import SearchFilterTag from "./SearchFilterTag";
 import "../assets/styles/components/Navbar.scss";
 
-class SearchFilterTest extends React.Component {
+/* class SearchFilterTest extends React.Component {
   constructor(props) {
     super(props);
     this.inputText = React.createRef();
@@ -48,6 +48,7 @@ class SearchFilterTest extends React.Component {
                 className="header__navbar-input"
                 ref={this.inputText}
                 onKeyUp={(e) => this.handleKeyUp(e)}
+
                 type="text"
                 placeholder="Text here..."
               />
@@ -60,6 +61,43 @@ class SearchFilterTest extends React.Component {
       </nav>
     );
   }
+} */
+
+class SearchFilterTest extends React.Component {
+
+  render(){
+    return (
+      <nav className="header__navbar">
+        <ul>
+          <div className="navbar__tagFilter">
+            {/* {this.state.tag} */}
+  
+            <li>
+              {/* <input
+                className="header__navbar-input"
+                ref={this.inputText}
+                onKeyUp={(e) => this.handleKeyUp(e)}
+  
+                type="text"
+                placeholder="Text here..."
+              /> */}
+  
+              <input
+                className="header__navbar-input"
+                onChange={this.props.onChange} 
+                type="text"
+                placeholder="Text here..."
+              /> 
+            </li>
+          </div>
+          <li /* onClick={this.handleClear} */ className="header__navbar-clearButton">
+            Clear
+          </li>
+        </ul>
+      </nav>
+    );
+  }
+  
 }
 
 export default SearchFilterTest;
