@@ -30,16 +30,23 @@ import "../assets/styles/components/JobCardContainer.scss";
 class JobCardContainer extends React.Component {
 
  state = {
-   data: [],
+   data: dataInfo,
    test: []
  }
 
-  handleTest = e => {
+ handleFilter = e => {
     if(e.keyCode === 13) {
       const text = e.target.value
+      const newSearch = dataInfo.filter(value => (value.role === e.target.value && value.level === e.target.value) || (value.role === e.target.value || value.level === e.target.value))
+      /* const newSeatch2 = [
+        ...newSearch, dataInfo.filter(value =>value.level === e.target.value)
+      ]  */
       this.setState({
+        data: newSearch,
         test: [...this.state.test, text], 
       })
+
+      console.log(newSearch);
     }
   }
 
@@ -53,11 +60,11 @@ class JobCardContainer extends React.Component {
   render() {
     return (
       <main className="container">
-        <Filter onChange={this.handleTest}/>
+        <Filter onChange={this.handleFilter}/>
         {this.state.data.map((job) => {
               return <JobCard {...job} key={job.id} />;
             })}
-        <button onClick={this.handleClick}>Click</button>
+       {/*  <button onClick={this.handleClick}>Click</button> */}
       </main>
     );
   }
