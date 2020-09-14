@@ -71,19 +71,28 @@ class SearchFilter extends React.Component {
 
   handleClearInput = e => {
     if(e.keyCode === 13) {
-      const newTag = (
+/*       const newTag = (
         <li key={this.inputText.current.value}>
           <div className="filter__tag">
             <p>{this.inputText.current.value}</p>
             <span>x</span>
           </div>
         </li>
-      );
+      ); */
       this.setState({
-        tag: [...this.state.tag, newTag],
+        tag: [...this.state.tag,
+        <SearchFilterTag
+          key={this.inputText.current.value}
+          title={this.inputText.current.value}
+        />],
       });
       this.inputText.current.value = ""
     }
+  }
+
+  handleDeleteTag = () => {
+    console.log('entro');
+    console.log(this.state.tag);
   }
 
   handleClearFilter = () => {
@@ -100,6 +109,7 @@ class SearchFilter extends React.Component {
         <ul>
           <div className="navbar__tagFilter">
             {this.state.tag}
+            {this.handleDeleteTag()}
   
             <li>
               {/* <input
