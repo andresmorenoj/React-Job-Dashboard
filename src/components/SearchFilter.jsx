@@ -65,13 +65,13 @@ class SearchFilter extends React.Component {
     this.inputText = React.createRef();
     this.handleKeyUp = this.handleClearInput.bind(this);
     this.state = {
-      tag: []
-    }
+      tag: '',
+    };
   }
 
-  handleClearInput = e => {
-    if(e.keyCode === 13) {
-/*       const newTag = (
+  handleClearInput = (e) => {
+    if (e.keyCode === 13) {
+      /*       const newTag = (
         <li key={this.inputText.current.value}>
           <div className="filter__tag">
             <p>{this.inputText.current.value}</p>
@@ -79,38 +79,62 @@ class SearchFilter extends React.Component {
           </div>
         </li>
       ); */
+      /* this.setState({
+        tag: [
+          ...this.state.tag,
+          <SearchFilterTag key={this.inputText.current.value} title={this.inputText.current.value} onClick={this.handleDeleteTag} />,
+        ],
+      }); */
       this.setState({
         tag: [...this.state.tag,
-        <SearchFilterTag
-          key={this.inputText.current.value}
-          title={this.inputText.current.value}
-        />],
-      });
-      this.inputText.current.value = ""
+          this.inputText.current.value
+        ]
+      })
+      console.log(this.state.tag);
+      this.inputText.current.value = "";
     }
-  }
+  };
 
-  handleDeleteTag = () => {
-    console.log('entro');
-    console.log(this.state.tag);
-  }
+  handleDeleteTag = (e) => {
+    console.log("click tag");
+    let index = this.state.tag.filter((tag) => tag !== e);
+    this.setState({
+      tag: index,
+    });
+   /*  const index = this.state.tag.indexOf(e)
+    if(index > -1) {
+      this.setState({
+        tag: [
+          this.state.tag.splice(index, 1)
+        ]
+      })
+      
+     */
+    console.log("Esto es e: ", e);
+    console.log("Esto es index: ", index);
+    console.log("Esto es state: ", this.state.tag);
+    //console.log(this.state.tag.key);
+  };
 
   handleClearFilter = () => {
     this.setState({
       tag: [],
     });
+  };
 
-    console.log('hola');
-  }
-
-  render(){
+  render() {
     return (
       <nav className="header__navbar">
         <ul>
           <div className="navbar__tagFilter">
-            {this.state.tag}
-            {this.handleDeleteTag()}
-  
+            {
+              this.state.tag
+                ? this.state.tag.map((tag) => (
+                  <SearchFilterTag key={tag} title={tag} onClick={this.handleDeleteTag} />
+                ))
+                : null
+            }
+
             <li>
               {/* <input
                 className="header__navbar-input"
@@ -120,15 +144,15 @@ class SearchFilter extends React.Component {
                 type="text"
                 placeholder="Text here..."
               /> */}
-  
+
               <input
                 className="header__navbar-input"
-                onKeyDown={this.props.onChange} 
+                onKeyDown={this.props.onChange}
                 type="text"
                 ref={this.inputText}
                 placeholder="Text here..."
                 onKeyUp={this.handleClearInput}
-              /> 
+              />
             </li>
           </div>
           <li onClick={this.props.onClick} onClickCapture={this.handleClearFilter} className="header__navbar-clearButton">
@@ -138,7 +162,6 @@ class SearchFilter extends React.Component {
       </nav>
     );
   }
-  
 }
 
 export default SearchFilter;
