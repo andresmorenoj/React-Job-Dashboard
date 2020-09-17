@@ -1,59 +1,64 @@
 import React from "react";
 import SearchFilterTag from "./SearchFilterTag";
 import "../assets/styles/components/Navbar.scss";
-
-class SearchFilterTest extends React.Component {
+class SearchFilter extends React.Component {
   constructor(props) {
     super(props);
     this.inputText = React.createRef();
-    this.handleKeyUp = this.handleKeyUp.bind(this);
-    this.handleClear = this.handleClear.bind(this);
+    this.handleKeyUp = this.handleClearInput.bind(this);
     this.state = {
-      tag: [],
+      tag: '',
     };
   }
 
-  handleKeyUp(e) {
+  handleClearInput = (e) => {
     if (e.keyCode === 13) {
-      const newTag = (
-        <li key={this.inputText.current.value}>
-          <div className="filter__tag">
-            <p>{this.inputText.current.value}</p>
-            <span>x</span>
-          </div>
-        </li>
-      );
       this.setState({
-        tag: [...this.state.tag, newTag],
-      });
+        tag: [...this.state.tag,
+          this.inputText.current.value
+        ]
+      })
       this.inputText.current.value = "";
     }
-  }
+  };
 
-  handleClear() {
+  handleDeleteTag = (e) => {
+    let index = this.state.tag.filter((tag) => tag !== e);
+    this.setState({
+      tag: index,
+    });
+  };
+
+  handleClearFilter = () => {
     this.setState({
       tag: [],
     });
-  }
+  };
 
   render() {
     return (
       <nav className="header__navbar">
         <ul>
           <div className="navbar__tagFilter">
-            {this.state.tag}
-
+            {
+              this.state.tag
+                ? this.state.tag.map((tag) => (
+                  <SearchFilterTag key={tag} title={tag} onClick={this.handleDeleteTag} onClickCapture={this.props.onClickCapture}/>
+                ))
+                : null
+            }
             <li>
               <input
                 className="header__navbar-input"
-                ref={this.inputText}
-                onKeyUp={(e) => this.handleKeyUp(e)}
+                onKeyDown={this.props.onChange}
                 type="text"
+                ref={this.inputText}
                 placeholder="Text here..."
+                onKeyUp={this.handleClearInput}
               />
             </li>
           </div>
-          <li onClick={this.handleClear} className="header__navbar-clearButton">
+          <li onClick={this.props.onClick} onClickCapture={this.handleClearFilter} className="header__navbar-clearButton">
             Clear
           </li>
         </ul>
@@ -62,4 +67,4 @@ class SearchFilterTest extends React.Component {
   }
 }
 
-export default SearchFilterTest;
+export default SearchFilter;

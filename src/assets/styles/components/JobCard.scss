@@ -1,4 +1,16 @@
 @import "../Vars.scss";
+@import "../BreakPoints.scss";
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+  line-height: calculateRem($size) 1.5;
+}
 
 .card__container {
   max-width: 100%;
@@ -17,15 +29,37 @@
     border-left: 6px solid $primaryColor;
     padding-left: 44px;
   }
+
+  @include media(desktop-m-2) {
+    display: block;
+  }
+  @include media(desktop-m-3) {
+    display: block;
+    padding: 20px 30px;
+  }
 }
 
 .card__container__jobInformation {
   display: flex;
   align-items: center;
 
+  @include media(desktop-m-3) {
+    display: block;
+  }
+
   figure {
     margin: 0 20px 0 0;
     height: fit-content;
+    @include media(desktop-m-3) {
+      margin: -50px 0 20px 0;
+    }
+    img {
+      @include media(desktop-m-3) {
+        max-width: 100%;
+       
+      }
+      
+    }
   }
 }
 
@@ -39,7 +73,7 @@
   text-transform: uppercase;
   padding: 8px 15px 6px;
   border-radius: 20px;
-  font-size: 0.8em;
+  @include font-size(10px);
   line-height: normal;
 }
 
@@ -53,7 +87,7 @@
 
   .card__jobInformation-company {
     color: $primaryColor;
-    font-size: 1em;
+   
   }
 
   .card__jobInformation-new {
@@ -68,7 +102,7 @@
 }
 
 h2 {
-  font-size: 1.3em;
+  @include font-size(18px);
   font-weight: 700;
   color: $color4;
   text-transform: capitalize;
@@ -82,6 +116,7 @@ h2 {
 
   p {
     color: $color3;
+    @include font-size(12px);
   }
 
   span {
@@ -96,5 +131,22 @@ h2 {
 
 .card__tags {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  @include font-size(14px);
+
+  @include media(desktop-m-2) {
+    border-top: 1px solid $color3;
+    padding-top: 15px;
+    margin-top: 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  @include media(desktop-m-3) {
+    border-top: 1px solid $color3;
+    padding-top: 15px;
+    margin-top: 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 }
