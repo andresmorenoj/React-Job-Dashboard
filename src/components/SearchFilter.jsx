@@ -1,64 +1,6 @@
 import React from "react";
 import SearchFilterTag from "./SearchFilterTag";
 import "../assets/styles/components/Navbar.scss";
-
-/* class SearchFilterTest extends React.Component {
-  constructor(props) {
-    super(props);
-    this.inputText = React.createRef();
-    this.handleKeyUp = this.handleKeyUp.bind(this);
-    this.handleClear = this.handleClear.bind(this);
-    this.state = {
-      tag: [],
-    };
-  }
-
-  handleKeyUp(e) {
-    if (e.keyCode === 13) {
-      const newTag = (
-        <li key={this.inputText.current.value}>
-          <div className="filter__tag">
-            <p>{this.inputText.current.value}</p>
-            <span>x</span>
-          </div>
-        </li>
-      );
-      this.setState({
-        tag: [...this.state.tag, newTag],
-      });
-      this.inputText.current.value = "";
-    }
-  }
-
-  
-
-  render() {
-    return (
-      <nav className="header__navbar">
-        <ul>
-          <div className="navbar__tagFilter">
-            {this.state.tag}
-
-            <li>
-              <input
-                className="header__navbar-input"
-                ref={this.inputText}
-                onKeyUp={(e) => this.handleKeyUp(e)}
-
-                type="text"
-                placeholder="Text here..."
-              />
-            </li>
-          </div>
-          <li onClick={this.handleClear} className="header__navbar-clearButton">
-            Clear
-          </li>
-        </ul>
-      </nav>
-    );
-  }
-} */
-
 class SearchFilter extends React.Component {
   constructor(props) {
     super(props);
@@ -71,39 +13,20 @@ class SearchFilter extends React.Component {
 
   handleClearInput = (e) => {
     if (e.keyCode === 13) {
-      /*       const newTag = (
-        <li key={this.inputText.current.value}>
-          <div className="filter__tag">
-            <p>{this.inputText.current.value}</p>
-            <span>x</span>
-          </div>
-        </li>
-      ); */
-      /* this.setState({
-        tag: [
-          ...this.state.tag,
-          <SearchFilterTag key={this.inputText.current.value} title={this.inputText.current.value} onClick={this.handleDeleteTag} />,
-        ],
-      }); */
       this.setState({
         tag: [...this.state.tag,
           this.inputText.current.value
         ]
       })
-      console.log(this.state.tag);
       this.inputText.current.value = "";
     }
   };
 
   handleDeleteTag = (e) => {
- /*    console.log("click tag"); */
     let index = this.state.tag.filter((tag) => tag !== e);
     this.setState({
       tag: index,
     });
-/*     console.log("Esto es e: ", e);
-    console.log("Esto es index: ", index);
-    console.log("Esto es state: ", this.state.tag); */
   };
 
   handleClearFilter = () => {
@@ -124,17 +47,7 @@ class SearchFilter extends React.Component {
                 ))
                 : null
             }
-
             <li>
-              {/* <input
-                className="header__navbar-input"
-                ref={this.inputText}
-                onKeyUp={(e) => this.handleKeyUp(e)}
-  
-                type="text"
-                placeholder="Text here..."
-              /> */}
-
               <input
                 className="header__navbar-input"
                 onKeyDown={this.props.onChange}

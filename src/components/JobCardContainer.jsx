@@ -1,32 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Filter from './SearchFilter';
 import JobCard from './JobCard';
 import dataInfo from "../data.json";
 import "../assets/styles/components/JobCardContainer.scss";
-
-/* function JobCardContainer() {
-
-  const [data, setData] = useState([]);
-  const [test, setTest] = useState('');
-
-  const handleTest = e => {
-    setTest(e.target.value)
-  }
-
-  const handleClick = () => {
-    setData(dataInfo);
-  }
-
-  return (
-    <main className="container">
-      <Filter onchange={() => handleTest(e)}/>
-      {data.map((job) => {
-            return <JobCard {...job} key={job.id} />;
-          })}
-          <button onClick={() => handleClick()}>Click</button>
-    </main>
-  );
-}; */
 class JobCardContainer extends React.Component {
 
  state = {
@@ -43,8 +19,6 @@ class JobCardContainer extends React.Component {
         data: newSearch,
         test: [...this.state.test, text], 
       })
-
-      console.log(newSearch);
     }
   }
 
@@ -56,8 +30,6 @@ class JobCardContainer extends React.Component {
   }
 
   handleDeleteTag = e => {
-
-    console.log(this.state.test);
     const newFilterData = dataInfo.filter(tag => {
       const deleteTag = this.state.test.filter(tag => tag !== e)
       console.log('Delete tag 1: ', deleteTag );
@@ -74,6 +46,7 @@ class JobCardContainer extends React.Component {
         }
         return dataInfo.filter(tag => tag.role !== e)
       }
+
       if(tag.level === e) {
         console.log('Delete tag 2: ', deleteTag );
         if(!this.state.test) {
@@ -83,6 +56,7 @@ class JobCardContainer extends React.Component {
         }
         return dataInfo.filter(tag => tag.level !== e)
       }
+
       if(tag.position === e) {
         console.log('Delete tag 2: ', deleteTag );
         if(!this.state.test) {
@@ -97,17 +71,6 @@ class JobCardContainer extends React.Component {
     this.setState({
       data: newFilterData
     })
-
-    /* const index2 = dataInfo.filter(tag => tag.role !== e || tag.level !== e)
-    console.log('Esto es index 2:', index2);
-    let index = this.state.data.find((tag) => tag.role === e);
-    this.setState({
-      data: index2
-    });
-    
-    console.log("Esto es e: ", e);
-    console.log("Esto es index 34: ", index);
-    console.log("Esto es state 34: ", this.state.data); */
   }
 
   render() {
@@ -121,12 +84,9 @@ class JobCardContainer extends React.Component {
             })
             : null
         }
-       {/*  <button onClick={this.handleClick}>Click</button> */}
       </main>
     );
   }
-
-  
 };
 
 export default JobCardContainer;
