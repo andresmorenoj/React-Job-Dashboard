@@ -32,13 +32,11 @@ class JobCardContainer extends React.Component {
   handleDeleteTag = e => {
     const newFilterData = dataInfo.filter(tag => {
       const deleteTag = this.state.test.filter(tag => tag !== e)
-      console.log('Delete tag 1: ', deleteTag );
       this.setState({
         test: deleteTag
       })
 
       if(tag.role === e) {
-        console.log('Delete tag 2: ', deleteTag );
         if(!this.state.test) {
           return this.setState({
             data: dataInfo
@@ -48,7 +46,6 @@ class JobCardContainer extends React.Component {
       }
 
       if(tag.level === e) {
-        console.log('Delete tag 2: ', deleteTag );
         if(!this.state.test) {
           return this.setState({
             data: dataInfo
@@ -58,7 +55,6 @@ class JobCardContainer extends React.Component {
       }
 
       if(tag.position === e) {
-        console.log('Delete tag 2: ', deleteTag );
         if(!this.state.test) {
           return this.setState({
             data: dataInfo
