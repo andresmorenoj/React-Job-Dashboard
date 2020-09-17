@@ -37,8 +37,7 @@ class JobCardContainer extends React.Component {
  handleFilter = e => {
     if(e.keyCode === 13) {
       const text = e.target.value
-      const newSearch = dataInfo.filter(value => (value.role === e.target.value && value.level === e.target.value) ||
-      (value.role === e.target.value || value.level === e.target.value))
+      const newSearch = dataInfo.filter(value => (value.role.toLowerCase() === e.target.value.toLowerCase() || value.level.toLowerCase() === e.target.value.toLowerCase() || value.position.toLowerCase() === e.target.value.toLowerCase()))
 
       this.setState({
         data: newSearch,
@@ -56,13 +55,72 @@ class JobCardContainer extends React.Component {
     });
   }
 
+  handleDeleteTag = e => {
+
+    console.log(this.state.test);
+    const newFilterData = dataInfo.filter(tag => {
+      const deleteTag = this.state.test.filter(tag => tag !== e)
+      console.log('Delete tag 1: ', deleteTag );
+      this.setState({
+        test: deleteTag
+      })
+
+      if(tag.role === e) {
+        console.log('Delete tag 2: ', deleteTag );
+        if(!this.state.test) {
+          return this.setState({
+            data: dataInfo
+          })
+        }
+        return dataInfo.filter(tag => tag.role !== e)
+      }
+      if(tag.level === e) {
+        console.log('Delete tag 2: ', deleteTag );
+        if(!this.state.test) {
+          return this.setState({
+            data: dataInfo
+          })
+        }
+        return dataInfo.filter(tag => tag.level !== e)
+      }
+      if(tag.position === e) {
+        console.log('Delete tag 2: ', deleteTag );
+        if(!this.state.test) {
+          return this.setState({
+            data: dataInfo
+          })
+        }
+        return dataInfo.filter(tag => tag.position !== e)
+      }
+    })
+
+    this.setState({
+      data: newFilterData
+    })
+
+    /* const index2 = dataInfo.filter(tag => tag.role !== e || tag.level !== e)
+    console.log('Esto es index 2:', index2);
+    let index = this.state.data.find((tag) => tag.role === e);
+    this.setState({
+      data: index2
+    });
+    
+    console.log("Esto es e: ", e);
+    console.log("Esto es index 34: ", index);
+    console.log("Esto es state 34: ", this.state.data); */
+  }
+
   render() {
     return (
       <main className="container">
-        <Filter onChange={this.handleFilter} onClick={this.handleClear} />
-        {this.state.data.map((job) => {
+        <Filter onChange={this.handleFilter} onClick={this.handleClear} onClickCapture={this.handleDeleteTag}/>
+        {
+          this.state.data
+            ? this.state.data.map((job) => {
               return <JobCard {...job} key={job.id} />;
-            })}
+            })
+            : null
+        }
        {/*  <button onClick={this.handleClick}>Click</button> */}
       </main>
     );

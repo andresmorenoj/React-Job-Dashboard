@@ -25,7 +25,7 @@ import "../assets/styles/components/SearchFilterTag.scss";
 class SearchFilterTag extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.textRef = React.createRef();
   }
 
@@ -38,7 +38,7 @@ class SearchFilterTag extends React.Component {
       <div className="filter__tag">
         <p id='Hola'>{this.props.title}</p>
         {this.show}
-        <span onClick={() => this.props.onClick(this.props.title)}>x</span>
+        <span onClick={() => this.props.onClick(this.props.title)} onClickCapture={() => this.props.onClickCapture(this.props.title)}>x</span>
       </div>
     </li>
     )

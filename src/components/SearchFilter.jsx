@@ -96,24 +96,14 @@ class SearchFilter extends React.Component {
   };
 
   handleDeleteTag = (e) => {
-    console.log("click tag");
+ /*    console.log("click tag"); */
     let index = this.state.tag.filter((tag) => tag !== e);
     this.setState({
       tag: index,
     });
-   /*  const index = this.state.tag.indexOf(e)
-    if(index > -1) {
-      this.setState({
-        tag: [
-          this.state.tag.splice(index, 1)
-        ]
-      })
-      
-     */
-    console.log("Esto es e: ", e);
+/*     console.log("Esto es e: ", e);
     console.log("Esto es index: ", index);
-    console.log("Esto es state: ", this.state.tag);
-    //console.log(this.state.tag.key);
+    console.log("Esto es state: ", this.state.tag); */
   };
 
   handleClearFilter = () => {
@@ -130,7 +120,7 @@ class SearchFilter extends React.Component {
             {
               this.state.tag
                 ? this.state.tag.map((tag) => (
-                  <SearchFilterTag key={tag} title={tag} onClick={this.handleDeleteTag} />
+                  <SearchFilterTag key={tag} title={tag} onClick={this.handleDeleteTag} onClickCapture={this.props.onClickCapture}/>
                 ))
                 : null
             }
